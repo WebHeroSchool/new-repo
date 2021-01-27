@@ -1,10 +1,18 @@
 let body = document.body;
 let url = window.location.toString();
 
-fetch("https://api.github.com/users/CheplaginaNadezhda")
+let getNameUser = (url) => {
+ let getUrl = url.split('=');
+ let nameUser = getUrl[1];
+ if(nameUser == undefined) {
+ 	nameUser = 'CheplaginaNadezhda';
+ }
+ return nameUser;
+}
+
+fetch(`https://api.github.com/users/${getNameUser(url)}`)
 .then(res => res.json())
 .then(json => {
-
 	console.log(json.avatar_url);
     console.log(json.name);
     console.log(json.bio);
