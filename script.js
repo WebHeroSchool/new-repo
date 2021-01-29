@@ -3,8 +3,7 @@ let url = window.location.toString();
 let date = new Date();
 let preloader = document.getElementById('preloader');
 
-setTimeout(() => {
-preloader.classList.add('hidden');
+
 let getNameUser = (url) => {
  let getUrl = url.split('=');
  let nameUser = getUrl[1];
@@ -27,6 +26,11 @@ Promise.all([getUrl, getDate])
 .then(([userUrl, date]) => fetch(userUrl))
 .then(res => res.json())
 .then(json => {
+  preloader.classList.add('hidden');
+  json.message === 'Not Found' ? userNotFound() : userFound();
+  function userNotFound() {
+  throw new Error()};
+  function userFound() {
 
 let photo = new Image();
 photo.src = json.avatar_url;
@@ -50,7 +54,7 @@ if(json.bio != null){
 }
 body.append(info);
 body.append(date);
-})
+}
 
+})
 .catch(err => alert('Информация о пользователе недоступна'));
-}, 5000);
