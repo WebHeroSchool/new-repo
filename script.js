@@ -13,6 +13,7 @@ let getNameUser = (url) => {
  }
  return nameUser;
 }
+
 let userUrl = `https://api.github.com/users/${getNameUser(url)}`;
 
 let getDate = new Promise((resolve, reject) => {
