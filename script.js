@@ -28,7 +28,7 @@ Promise.all([getUrl, getDate])
 .then(json => {
   preloader.classList.add('hidden');
   json.message === 'Not Found' ? userNotFound() : userFound();
-  function userNotFound()  {
+  function userNotFound() {
   throw new Error()};
   function userFound() {
 
