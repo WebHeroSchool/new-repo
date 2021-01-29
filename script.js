@@ -22,7 +22,7 @@ let getUrl = new Promise((resolve, reject) => {
 	setTimeout(() => userUrl ? resolve(userUrl) : reject("Ссылка не найдена"), 3000)
 });
 
-Promise.all.([getUrl, getDate])
+Promise.all([getUrl, getDate])
 .then(([userUrl, date]) => fetch(userUrl))
 .then(res => res.json())
 .then(json => {
